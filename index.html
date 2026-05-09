@@ -43,68 +43,16 @@
     }
 
     /*
-      This image is the cropped "Happy Mother's Day" words.
-      It sits on top of the same words area.
-      The flashing effect makes it look like neon lights.
-    */
-    .mother-words {
-      position: absolute;
-      left: 3.7%;
-      top: 12.5%;
-      width: 44.5%;
-      z-index: 5;
-      pointer-events: none;
-
-      animation: neonFlash 1.15s infinite alternate;
-      filter:
-        drop-shadow(0 0 5px rgba(170, 255, 0, 0.85))
-        drop-shadow(0 0 14px rgba(170, 255, 0, 0.65));
-    }
-
-    @keyframes neonFlash {
-      0% {
-        opacity: 0.78;
-        filter:
-          brightness(1)
-          drop-shadow(0 0 4px rgba(170, 255, 0, 0.65))
-          drop-shadow(0 0 9px rgba(170, 255, 0, 0.45));
-      }
-
-      45% {
-        opacity: 1;
-        filter:
-          brightness(1.35)
-          drop-shadow(0 0 8px rgba(170, 255, 0, 1))
-          drop-shadow(0 0 20px rgba(170, 255, 0, 0.95));
-      }
-
-      70% {
-        opacity: 0.88;
-        filter:
-          brightness(1.1)
-          drop-shadow(0 0 5px rgba(255, 255, 255, 0.65))
-          drop-shadow(0 0 16px rgba(170, 255, 0, 0.75));
-      }
-
-      100% {
-        opacity: 1;
-        filter:
-          brightness(1.55)
-          drop-shadow(0 0 10px rgba(170, 255, 0, 1))
-          drop-shadow(0 0 28px rgba(170, 255, 0, 1));
-      }
-    }
-
-    /*
-      Invisible clickable area over the Happy Mother's Day words.
-      No rectangle. No border. No background.
+      Invisible clickable area.
+      It covers the "Happy Mother's Day" words,
+      but users will NOT see any green rectangle.
     */
     .mother-click-area {
       position: absolute;
       left: 3.5%;
-      top: 13%;
-      width: 45%;
-      height: 27%;
+      top: 13.5%;
+      width: 44.5%;
+      height: 26.5%;
       background: transparent;
       border: none;
       cursor: pointer;
@@ -117,47 +65,13 @@
     }
 
     /*
-      This is the dog mascot with flowers.
-      It appears in the Happy Mother's Day area.
-      It disappears after 15 seconds by JavaScript.
-    */
-    .mascot {
-      position: absolute;
-      left: 4.2%;
-      top: 13.5%;
-      width: 43.5%;
-      z-index: 10;
-
-      opacity: 0;
-      transform: scale(0.05);
-      transform-origin: center center;
-      pointer-events: none;
-
-      border-radius: 18px;
-      box-shadow:
-        0 0 18px rgba(255, 130, 180, 0.65),
-        0 0 35px rgba(170, 255, 0, 0.55);
-
-      transition:
-        opacity 0.8s ease,
-        transform 1.15s ease,
-        filter 1.15s ease;
-    }
-
-    .poster.show-mascot .mascot {
-      opacity: 1;
-      transform: scale(1);
-      filter: brightness(1.08);
-    }
-
-    /*
-      Small visible click button below "Happy Mother's Day".
+      This is the visible button below "Happy Mother's Day".
     */
     .instruction {
       position: absolute;
       left: 4.2%;
       top: 43.5%;
-      z-index: 20;
+      z-index: 15;
 
       color: #ffffff;
       background: rgba(0, 0, 0, 0.72);
@@ -172,12 +86,50 @@
 
       transition:
         transform 0.25s ease,
-        box-shadow 0.25s ease;
+        box-shadow 0.25s ease,
+        background 0.25s ease;
     }
 
     .instruction:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 22px rgba(170, 255, 0, 0.85);
+      background: rgba(0, 0, 0, 0.86);
+      box-shadow: 0 0 22px rgba(170, 255, 0, 0.75);
+    }
+
+    /*
+      Mascot image.
+      It is placed in the same Happy Mother's Day area.
+      It appears immediately after clicking.
+      It disappears after 15 seconds by JavaScript.
+    */
+    .mascot {
+      position: absolute;
+      left: 3.8%;
+      top: 12%;
+      width: 46%;
+      height: auto;
+      z-index: 10;
+
+      opacity: 0;
+      transform: scale(0.96);
+      pointer-events: none;
+
+      border-radius: 18px;
+      box-shadow:
+        0 0 24px rgba(255, 160, 190, 0.75),
+        0 0 34px rgba(170, 255, 0, 0.38);
+
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .poster.show-mascot .mascot {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .poster.show-mascot .instruction {
+      opacity: 0;
+      pointer-events: none;
     }
 
     .instagram-link {
@@ -212,23 +164,18 @@
         border-radius: 10px;
       }
 
-      .mother-words {
-        left: 3.5%;
-        top: 12.8%;
-        width: 45.5%;
-      }
-
       .mother-click-area {
         left: 3.2%;
-        top: 13%;
-        width: 46%;
+        top: 13.2%;
+        width: 45.5%;
         height: 27%;
       }
 
       .mascot {
-        left: 4%;
-        top: 14.5%;
-        width: 44.5%;
+        left: 3.8%;
+        top: 13%;
+        width: 46%;
+        border-radius: 10px;
       }
 
       .instruction {
@@ -252,22 +199,15 @@
   <main class="page">
     <section class="poster" id="poster">
 
-      <!-- Shining Happy Mother's Day words -->
+      <!-- Mascot image appears after clicking -->
       <img
-        src="mothers-day-words.png"
-        alt="Happy Mother's Day"
-        class="mother-words"
-      />
-
-      <!-- Mascot appears after clicking -->
-      <img
-        src="mascot.png"
-        alt="Newson Sportec dog mascot carrying Mother's Day flowers"
+        src="mascot-flowers.png"
+        alt="Newson Sportec mascot carrying flowers"
         class="mascot"
         id="mascot"
       />
 
-      <!-- Invisible clickable area over Happy Mother's Day -->
+      <!-- Invisible clickable area over Happy Mother's Day words -->
       <button
         class="mother-click-area"
         id="motherClickArea"
