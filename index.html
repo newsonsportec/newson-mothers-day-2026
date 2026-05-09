@@ -39,13 +39,13 @@
       background-repeat: no-repeat;
       overflow: hidden;
       border-radius: 18px;
-      box-shadow: 0 0 35px rgba(170, 255, 0, 0.45);
+      box-shadow: 0 0 35px rgba(170, 255, 0, 0.35);
     }
 
     /*
-      This is the clickable area.
-      It covers ONLY the "Happy Mother's Day" words.
-      You can see the neon green rectangle.
+      Invisible clickable area.
+      No neon green rectangle.
+      Users can still click the Happy Mother's Day area.
     */
     .mother-click-area {
       position: absolute;
@@ -53,36 +53,20 @@
       top: 13.5%;
       width: 44.5%;
       height: 26.5%;
-
-      background: rgba(170, 255, 0, 0.06);
-      border: 3px solid rgba(170, 255, 0, 0.95);
-      border-radius: 18px;
-      box-shadow:
-        0 0 12px rgba(170, 255, 0, 0.9),
-        inset 0 0 12px rgba(170, 255, 0, 0.4);
-
+      background: transparent;
+      border: none;
       cursor: pointer;
       z-index: 10;
-      transition: 0.3s ease;
-    }
-
-    .mother-click-area:hover {
-      background: rgba(170, 255, 0, 0.13);
-      box-shadow:
-        0 0 25px rgba(170, 255, 0, 1),
-        inset 0 0 18px rgba(170, 255, 0, 0.55);
+      padding: 0;
     }
 
     .mother-click-area:focus {
       outline: none;
-      box-shadow:
-        0 0 30px rgba(170, 255, 0, 1),
-        inset 0 0 22px rgba(170, 255, 0, 0.7);
     }
 
     /*
-      Flower image appears inside the same area.
-      It grows smoothly after the user clicks the green rectangle.
+      Flower image appears inside the Happy Mother's Day area.
+      It grows smoothly after clicking.
     */
     .flowers {
       position: absolute;
@@ -111,37 +95,37 @@
       filter: drop-shadow(0 0 24px rgba(255, 130, 180, 0.85));
     }
 
-    /*
-      After flowers appear, the neon rectangle becomes softer.
-      It still shows users where they clicked.
-    */
-    .poster.show-flowers .mother-click-area {
-      background: rgba(170, 255, 0, 0.02);
-      border-color: rgba(170, 255, 0, 0.35);
-      box-shadow: 0 0 8px rgba(170, 255, 0, 0.45);
-    }
-
     .instruction {
       position: absolute;
-      left: 5%;
-      top: 42%;
+      left: 4.2%;
+      top: 43.5%;
       z-index: 12;
 
       color: #ffffff;
       background: rgba(0, 0, 0, 0.72);
       border: 1px solid rgba(170, 255, 0, 0.75);
-      padding: 10px 18px;
+      padding: 10px 20px;
       border-radius: 999px;
       font-size: clamp(13px, 1.25vw, 19px);
       font-weight: bold;
       letter-spacing: 0.5px;
       box-shadow: 0 0 14px rgba(170, 255, 0, 0.45);
+      cursor: pointer;
 
-      transition: opacity 0.5s ease;
+      transition:
+        opacity 0.5s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .instruction:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 22px rgba(170, 255, 0, 0.75);
     }
 
     .poster.show-flowers .instruction {
       opacity: 0;
+      pointer-events: none;
     }
 
     .instagram-link {
@@ -181,8 +165,6 @@
         top: 13.2%;
         width: 45.5%;
         height: 27%;
-        border-width: 2px;
-        border-radius: 12px;
       }
 
       .flowers {
@@ -193,8 +175,9 @@
 
       .instruction {
         left: 4.5%;
-        top: 43%;
-        padding: 7px 12px;
+        top: 43.5%;
+        padding: 8px 14px;
+        font-size: 13px;
       }
 
       .instagram-link {
@@ -224,9 +207,13 @@
         title="Click Happy Mother's Day"
       ></button>
 
-      <div class="instruction">
+      <button
+        class="instruction"
+        id="instructionButton"
+        aria-label="Click Happy Mother's Day"
+      >
         Click “Happy Mother’s Day”
-      </div>
+      </button>
 
       <a
         class="instagram-link"
@@ -243,12 +230,18 @@
   <script>
     const poster = document.getElementById("poster");
     const motherClickArea = document.getElementById("motherClickArea");
+    const instructionButton = document.getElementById("instructionButton");
 
-    motherClickArea.addEventListener("click", function () {
-      poster.classList.toggle("show-flowers");
-    });
+    function showFlowers() {
+      poster.classList.add("show-flowers");
+    }
+
+    motherClickArea.addEventListener("click", showFlowers);
+    instructionButton.addEventListener("click", showFlowers);
   </script>
 
 </body>
-</html>
-   
+</html>     
+     
+
+      
