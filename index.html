@@ -21,11 +21,11 @@
     .page {
       width: 100%;
       min-height: 100vh;
+      background: #000;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #000;
-      padding: 20px;
+      padding: 18px;
     }
 
     .poster {
@@ -39,101 +39,132 @@
       background-repeat: no-repeat;
       overflow: hidden;
       border-radius: 18px;
-      box-shadow: 0 0 35px rgba(143, 255, 0, 0.45);
+      box-shadow: 0 0 35px rgba(170, 255, 0, 0.45);
     }
 
     /*
-      This invisible button is placed on top of the
-      "Happy Mother's Day" words area.
+      This is the clickable area.
+      It covers ONLY the "Happy Mother's Day" words.
+      You can see the neon green rectangle.
     */
-    .mother-button {
+    .mother-click-area {
       position: absolute;
-      left: 4%;
-      top: 20%;
-      width: 42%;
-      height: 22%;
-      background: transparent;
-      border: none;
+      left: 3.5%;
+      top: 13.5%;
+      width: 44.5%;
+      height: 26.5%;
+
+      background: rgba(170, 255, 0, 0.06);
+      border: 3px solid rgba(170, 255, 0, 0.95);
+      border-radius: 18px;
+      box-shadow:
+        0 0 12px rgba(170, 255, 0, 0.9),
+        inset 0 0 12px rgba(170, 255, 0, 0.4);
+
       cursor: pointer;
-      z-index: 5;
+      z-index: 10;
+      transition: 0.3s ease;
     }
 
-    .mother-button:focus {
-      outline: 3px solid rgba(160, 255, 0, 0.9);
-      outline-offset: 4px;
-      border-radius: 20px;
+    .mother-click-area:hover {
+      background: rgba(170, 255, 0, 0.13);
+      box-shadow:
+        0 0 25px rgba(170, 255, 0, 1),
+        inset 0 0 18px rgba(170, 255, 0, 0.55);
+    }
+
+    .mother-click-area:focus {
+      outline: none;
+      box-shadow:
+        0 0 30px rgba(170, 255, 0, 1),
+        inset 0 0 22px rgba(170, 255, 0, 0.7);
     }
 
     /*
-      Flower image starts very small and hidden.
-      After clicking, it grows smoothly.
+      Flower image appears inside the same area.
+      It grows smoothly after the user clicks the green rectangle.
     */
     .flowers {
       position: absolute;
-      left: 5%;
-      top: 19%;
-      width: 42%;
-      z-index: 4;
+      left: 4.3%;
+      top: 14.5%;
+      width: 43%;
+      height: auto;
+      z-index: 8;
 
       opacity: 0;
       transform: scale(0.05);
       transform-origin: center center;
 
       transition:
-        transform 1.4s ease,
-        opacity 1.1s ease,
-        filter 1.4s ease;
+        opacity 1s ease,
+        transform 1.35s ease,
+        filter 1.35s ease;
 
-      filter: drop-shadow(0 0 0 rgba(255, 120, 170, 0));
+      filter: drop-shadow(0 0 0 rgba(255, 130, 180, 0));
       pointer-events: none;
     }
 
     .poster.show-flowers .flowers {
       opacity: 1;
       transform: scale(1);
-      filter: drop-shadow(0 0 22px rgba(255, 120, 170, 0.75));
+      filter: drop-shadow(0 0 24px rgba(255, 130, 180, 0.85));
     }
 
-    .hint {
+    /*
+      After flowers appear, the neon rectangle becomes softer.
+      It still shows users where they clicked.
+    */
+    .poster.show-flowers .mother-click-area {
+      background: rgba(170, 255, 0, 0.02);
+      border-color: rgba(170, 255, 0, 0.35);
+      box-shadow: 0 0 8px rgba(170, 255, 0, 0.45);
+    }
+
+    .instruction {
       position: absolute;
-      left: 6%;
-      top: 43%;
-      z-index: 6;
-      color: white;
-      font-size: clamp(14px, 1.5vw, 22px);
-      letter-spacing: 1px;
-      background: rgba(0, 0, 0, 0.55);
-      border: 1px solid rgba(160, 255, 0, 0.65);
+      left: 5%;
+      top: 42%;
+      z-index: 12;
+
+      color: #ffffff;
+      background: rgba(0, 0, 0, 0.72);
+      border: 1px solid rgba(170, 255, 0, 0.75);
       padding: 10px 18px;
       border-radius: 999px;
-      box-shadow: 0 0 14px rgba(160, 255, 0, 0.35);
+      font-size: clamp(13px, 1.25vw, 19px);
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      box-shadow: 0 0 14px rgba(170, 255, 0, 0.45);
+
       transition: opacity 0.5s ease;
     }
 
-    .poster.show-flowers .hint {
+    .poster.show-flowers .instruction {
       opacity: 0;
     }
 
-    .top-link {
+    .instagram-link {
       position: absolute;
       right: 4%;
       bottom: 4%;
-      z-index: 10;
-      text-decoration: none;
+      z-index: 12;
+
       color: #b7ff00;
-      background: rgba(0, 0, 0, 0.68);
-      border: 1px solid rgba(183, 255, 0, 0.75);
-      padding: 12px 20px;
+      background: rgba(0, 0, 0, 0.72);
+      border: 1px solid rgba(183, 255, 0, 0.8);
+      text-decoration: none;
+      padding: 12px 22px;
       border-radius: 999px;
-      font-size: clamp(13px, 1.3vw, 18px);
+      font-size: clamp(13px, 1.2vw, 18px);
       font-weight: bold;
-      letter-spacing: 1px;
-      box-shadow: 0 0 15px rgba(183, 255, 0, 0.35);
+      letter-spacing: 0.8px;
+      box-shadow: 0 0 16px rgba(183, 255, 0, 0.45);
     }
 
-    .top-link:hover {
-      background: rgba(183, 255, 0, 0.15);
-      box-shadow: 0 0 24px rgba(183, 255, 0, 0.7);
+    .instagram-link:hover {
+      background: rgba(183, 255, 0, 0.16);
+      box-shadow: 0 0 25px rgba(183, 255, 0, 0.85);
     }
 
     @media (max-width: 700px) {
@@ -142,29 +173,31 @@
       }
 
       .poster {
-        border-radius: 8px;
+        border-radius: 10px;
       }
 
-      .mother-button {
-        left: 3%;
-        top: 19%;
-        width: 47%;
-        height: 24%;
+      .mother-click-area {
+        left: 3.2%;
+        top: 13.2%;
+        width: 45.5%;
+        height: 27%;
+        border-width: 2px;
+        border-radius: 12px;
       }
 
       .flowers {
         left: 4%;
-        top: 21%;
-        width: 45%;
+        top: 15%;
+        width: 44%;
       }
 
-      .hint {
-        left: 5%;
-        top: 45%;
+      .instruction {
+        left: 4.5%;
+        top: 43%;
         padding: 7px 12px;
       }
 
-      .top-link {
+      .instagram-link {
         right: 3%;
         bottom: 3%;
         padding: 9px 14px;
@@ -178,27 +211,25 @@
   <main class="page">
     <section class="poster" id="poster">
 
-      <!-- Flower image -->
       <img
         src="flowers.png"
-        alt="Pink carnations, roses, and tulips for Mother's Day"
+        alt="Pink carnations, roses, and tulips"
         class="flowers"
       />
 
-      <!-- Invisible clickable area over Happy Mother's Day -->
       <button
-        class="mother-button"
-        id="motherButton"
-        aria-label="Click Happy Mother's Day to grow flowers"
+        class="mother-click-area"
+        id="motherClickArea"
+        aria-label="Click Happy Mother's Day to show flowers"
         title="Click Happy Mother's Day"
       ></button>
 
-      <div class="hint">
+      <div class="instruction">
         Click “Happy Mother’s Day”
       </div>
 
       <a
-        class="top-link"
+        class="instagram-link"
         href="https://www.instagram.com/newsonsportec/"
         target="_blank"
         rel="noopener noreferrer"
@@ -211,12 +242,13 @@
 
   <script>
     const poster = document.getElementById("poster");
-    const motherButton = document.getElementById("motherButton");
+    const motherClickArea = document.getElementById("motherClickArea");
 
-    motherButton.addEventListener("click", function () {
+    motherClickArea.addEventListener("click", function () {
       poster.classList.toggle("show-flowers");
     });
   </script>
 
 </body>
 </html>
+   
