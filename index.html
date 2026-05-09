@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Happy Mother's Day | Newson Sportec</title>
 
   <style>
@@ -42,11 +41,7 @@
       box-shadow: 0 0 35px rgba(170, 255, 0, 0.35);
     }
 
-    /*
-      Invisible clickable area.
-      It covers the "Happy Mother's Day" words,
-      but users will NOT see any green rectangle.
-    */
+    /* Invisible clickable area over Happy Mother's Day words */
     .mother-click-area {
       position: absolute;
       left: 3.5%;
@@ -64,44 +59,7 @@
       outline: none;
     }
 
-    /*
-      This is the visible button below "Happy Mother's Day".
-    */
-    .instruction {
-      position: absolute;
-      left: 4.2%;
-      top: 43.5%;
-      z-index: 15;
-
-      color: #ffffff;
-      background: rgba(0, 0, 0, 0.72);
-      border: 1px solid rgba(170, 255, 0, 0.75);
-      padding: 10px 20px;
-      border-radius: 999px;
-      font-size: clamp(13px, 1.25vw, 19px);
-      font-weight: bold;
-      letter-spacing: 0.5px;
-      box-shadow: 0 0 14px rgba(170, 255, 0, 0.45);
-      cursor: pointer;
-
-      transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        background 0.25s ease;
-    }
-
-    .instruction:hover {
-      transform: scale(1.05);
-      background: rgba(0, 0, 0, 0.86);
-      box-shadow: 0 0 22px rgba(170, 255, 0, 0.75);
-    }
-
-    /*
-      Mascot image.
-      It is placed in the same Happy Mother's Day area.
-      It appears immediately after clicking.
-      It disappears after 15 seconds by JavaScript.
-    */
+    /* Mascot image that appears for 15 seconds */
     .mascot {
       position: absolute;
       left: 3.8%;
@@ -109,16 +67,13 @@
       width: 46%;
       height: auto;
       z-index: 10;
-
       opacity: 0;
       transform: scale(0.96);
       pointer-events: none;
-
       border-radius: 18px;
       box-shadow:
         0 0 24px rgba(255, 160, 190, 0.75),
         0 0 34px rgba(170, 255, 0, 0.38);
-
       transition: opacity 0.25s ease, transform 0.25s ease;
     }
 
@@ -127,27 +82,69 @@
       transform: scale(1);
     }
 
+    /*
+      MOVED:
+      "Click Happy Mother’s Day"
+      moved to upper-middle area
+    */
+    .instruction {
+      position: absolute;
+      left: 52%;
+      top: 6.5%;
+      z-index: 15;
+
+      color: #ffffff;
+      background: rgba(0, 0, 0, 0.78);
+      border: 1px solid rgba(170, 255, 0, 0.8);
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: clamp(13px, 1.2vw, 18px);
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      box-shadow: 0 0 14px rgba(170, 255, 0, 0.45);
+      cursor: pointer;
+      white-space: nowrap;
+
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease,
+        opacity 0.3s ease;
+    }
+
+    .instruction:hover {
+      transform: scale(1.05);
+      background: rgba(0, 0, 0, 0.9);
+      box-shadow: 0 0 22px rgba(170, 255, 0, 0.75);
+    }
+
     .poster.show-mascot .instruction {
       opacity: 0;
       pointer-events: none;
     }
 
+    /*
+      MOVED:
+      "Follow Newson Sportec"
+      moved to lower middle-right area
+    */
     .instagram-link {
       position: absolute;
-      right: 4%;
-      bottom: 4%;
+      left: 60%;
+      bottom: 7%;
       z-index: 20;
 
       color: #b7ff00;
-      background: rgba(0, 0, 0, 0.72);
-      border: 1px solid rgba(183, 255, 0, 0.8);
+      background: rgba(0, 0, 0, 0.78);
+      border: 1px solid rgba(183, 255, 0, 0.85);
       text-decoration: none;
-      padding: 12px 22px;
+      padding: 12px 24px;
       border-radius: 999px;
-      font-size: clamp(13px, 1.2vw, 18px);
+      font-size: clamp(13px, 1.15vw, 18px);
       font-weight: bold;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.4px;
       box-shadow: 0 0 16px rgba(183, 255, 0, 0.45);
+      white-space: nowrap;
     }
 
     .instagram-link:hover {
@@ -179,27 +176,27 @@
       }
 
       .instruction {
-        left: 4.5%;
-        top: 43.5%;
-        padding: 8px 14px;
-        font-size: 13px;
+        left: 46%;
+        top: 7%;
+        padding: 8px 12px;
+        font-size: 12px;
       }
 
       .instagram-link {
-        right: 3%;
-        bottom: 3%;
-        padding: 9px 14px;
+        left: 51%;
+        bottom: 6%;
+        padding: 8px 12px;
+        font-size: 12px;
       }
     }
   </style>
 </head>
-
 <body>
 
   <main class="page">
     <section class="poster" id="poster">
 
-      <!-- Mascot image appears after clicking -->
+      <!-- Mascot image -->
       <img
         src="mascot-flowers.png"
         alt="Newson Sportec mascot carrying flowers"
@@ -207,7 +204,7 @@
         id="mascot"
       />
 
-      <!-- Invisible clickable area over Happy Mother's Day words -->
+      <!-- Invisible clickable area -->
       <button
         class="mother-click-area"
         id="motherClickArea"
@@ -215,7 +212,7 @@
         title="Click Happy Mother's Day"
       ></button>
 
-      <!-- Visible click button below Happy Mother's Day -->
+      <!-- Visible button -->
       <button
         class="instruction"
         id="instructionButton"
@@ -224,6 +221,7 @@
         Click “Happy Mother’s Day”
       </button>
 
+      <!-- Follow button -->
       <a
         class="instagram-link"
         href="https://www.instagram.com/newsonsportec/"
@@ -245,7 +243,6 @@
 
     function showMascotFor15Seconds() {
       clearTimeout(mascotTimer);
-
       poster.classList.add("show-mascot");
 
       mascotTimer = setTimeout(function () {
